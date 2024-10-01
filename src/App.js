@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { memo, useCallback, useState } from 'react'
 
-function App() {
+const Logger = memo((props) => {
+  props.log()
+  return null
+})
+
+export default function App() {
+  const [count, setCount] = useState(0)
+   const count5 = count % 5;
+
+const memoizedFunction = useCallback(() => {
+    console.log('useCallback');
+
+    if (count5 !== 0) {
+      console.log('not match');
+    } else {
+      console.log('match');
+    }
+  }, [count5]);
+
+  const normalFunction = () => {
+    console.log('normal')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <button
+        onClick={() => {
+          setCount(count + 1)
+        }}
+      >
+        Increment {count}
+      </button>
+      <Logger log={memoizedFunction} />
+      <Logger log={normalFunction} />
+    </>
+  )
 }
-
-export default App;
