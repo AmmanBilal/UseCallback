@@ -12,15 +12,16 @@ export default function App() {
 const memoizedFunction = useCallback(() => {
     console.log('useCallback');
 
-    if (count5 !== 0) {
-      console.log('not match');
-    } else {
-      console.log('match');
-    }
   }, [count5]);
 
   const normalFunction = () => {
     console.log('normal')
+  }
+
+  if (count5 !== 0) {
+    console.log('not match');
+  } else {
+    console.log('match');
   }
 
   return (
