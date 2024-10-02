@@ -1,4 +1,7 @@
 import React, { memo, useCallback, useState } from 'react'
+import Counter from './Counter'
+import FormVali from './FormVali'
+import MemoList from './MemoList'
 
 const Logger = memo((props) => {
   props.log()
@@ -35,6 +38,9 @@ const memoizedFunction = useCallback(() => {
       </button>
       <Logger log={memoizedFunction} />
       <Logger log={normalFunction} />
+        <Counter/>
+        <FormVali/>
+        <MemoList/>
     </>
   )
 }
